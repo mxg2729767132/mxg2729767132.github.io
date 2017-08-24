@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="js/jquery1.1.min.js"></script>
+    <link rel="stylesheet" href="css/bianqian.css">
+    <link rel="stylesheet" href="css/iconfont.css">
+</head>
+<body>
+    <section class="leftbar">
+        <h1>TODOLIST</h1>
+        <ul id="shijian">
+            <li>添加事项</li>
+            <li>查看待办事项</li>
+            <li>查看完成事项</li>
+        </ul>
+    </section>
+<div class="main">
+    <div class="container">
+        <div class="tishi">
+            <h1>字数已经超过限制，最多可以写100个</h1>
+            <div class="liaojie">确定</div>
+        </div>
+        <div class="add xuan">
+            <h3>添加新事项</h3>
+            <div class="add-text">
+                <textarea rows="8" cols="40" id="text"></textarea>
+                <div class="notice"><span>00</span>/100</div>
+                <input type="button" value="完成" id="submit">
+                <div class="guanbi">×</div>
+            </div>
+        </div>
+        <div class="wait xuan">
+            <h3>待办事项</h3>
+            <ul>
+
+            </ul>
+            <input type="button" value="移动到已完成" class="del">
+            <input type="button" value="&#xe65d;" class="jia iconfont">
+        </div>
+        <div class="done xuan">
+            <h3>已完成事项</h3>
+            <ul>
+
+            </ul>
+            <input type="button" value="删除" class="del">
+            <input type="button" value="&#xe65d;" class="jia iconfont">
+        </div>
+        <div class="xianshi">
+            <span>×</span>
+            <p></p>
+            <ul>
+                <li>创建时间：<time></time></li>
+                <li><input type="button" value="查看完成"></li>
+            </ul>
+        </div>
+    </div>
+</div>
+</body>
+<script src="js/bianqian.js"></script>
+</html>
