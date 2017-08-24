@@ -725,6 +725,13 @@ span:after {
 	margin-bottom: 30px;
 	letter-spacing: 3px;
 }
+.contact ul img{
+	width: 150px;
+	height: 150px;
+}
+.contact .lianxi li{
+	margin-bottom: 30px;
+}
 .contact ul{
 	text-align: center;
 }
