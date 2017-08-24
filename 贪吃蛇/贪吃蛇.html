@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        .box1{
+            width: 655px;
+            height: 500px;
+            margin: 0 auto;
+            display: flex;
+            background-image: url("2.jpg");
+        }
+        .left{
+            width: 150px;
+            height: 500px;
+            background-color: rgba(94,121,193,0.5);
+        }
+        .btn,.btn1{
+            width: 70px;
+            height: 30px;
+            margin: 20px auto;
+            /*margin-left: 30px;*/
+            background-color: #7d1d39;
+            border-radius: 10px;
+            text-align: center;
+            line-height: 30px;
+            cursor: pointer;
+            color: #0d9af3;
+            transition: all 0.8s;
+        }
+        .fen{
+            width: 80px;
+            height: 100px;
+            padding:0;
+            margin:20px auto;
+            text-align: center;
+            list-style:none;
+            color: #fff;
+        }
+        .fen li{
+            height: 40px;
+            line-height:40px;
+            border:1px solid #ccc;
+            margin:10px 0;
+        }
+
+        .btn{
+            margin:0 auto;
+            margin-top: 60px;
+            width: 100px;
+        }
+        .btn:hover{
+            color: #def5fb;
+            font-weight: 600;
+        }
+        .box{
+            width: 500px;
+            height: 500px;
+            border:1px solid #ccc;
+            position: relative;
+            overflow: hidden;
+        }
+        .mask{
+            position: absolute;
+            top:0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color:rgba(0,0,0,.8) ;
+            background-image: url("3.jpg");
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            display: block;
+        }
+        .block{
+            width: 25px;
+            height: 25px;
+            box-sizing: border-box;
+            /*border:1px solid #ccc;*/
+            border-radius: 50%;
+            float: left;
+        }
+        .snackbody{
+            background-color: green;
+            background-image: url("5.jpg");
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        .snackfoot{
+            background-image: url("5.png");
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        .food{
+            background-image: url("3.png");
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+    </style>
+</head>
+<body>
+    <div class="box1">
+        <div class="left">
+            <div class="btn">开始</div>
+            <div class="btn1">暂停</div>
+            <ul class="fen">
+                <li>得分</li>
+                <li class="vaule">0</li>
+            </ul>
+            <ul class="fen">
+                <li>关卡</li>
+                <li class="vaule1">0</li>
+            </ul>
+        </div>
+        <div class="box">
+            <div class="mask"></div>
+        </div>
+    </div>
+
+</body>
+<script src="jquery-3.2.1.min.js"></script>
+<script>
+    var date2=500;
+    var falg=true;
+    for(var i=0;i<20;i++){
+        for(var j=0;j<20;j++){
+            $("<div></div>").addClass("block").attr("id",j+"-"+i).appendTo(".box");
+        }
+    }
+    var snackArr=[{x:0,y:0},{x:1,y:0},{x:2,y:0}];
+    var snackHead=snackArr[snackArr.length-1];
+    function drawSnack(){
+        $(".snackbody").removeClass("snackbody");
+        $(".snackfoot").removeClass("snackfoot");
+$.each(snackArr,function(index,ele){
+            $("#"+ele.x+"-"+ele.y).addClass("snackbody");
+
+        });
+        $("#"+snackHead.x+"-"+snackHead.y).addClass("snackfoot");
+
+    }
+    var dir="r";
+    function move(){
+        switch (dir){
+            case "r":snackHead={x:snackHead.x+1,y:snackHead.y};break;
+            case "l":snackHead={x:snackHead.x-1,y:snackHead.y};break;
+            case "t":snackHead={x:snackHead.x,y:snackHead.y-1};break;
+            case "b":snackHead={x:snackHead.x,y:snackHead.y+1};break;
+        }
+        snackArr.push(snackHead);
+        var head=$("#"+snackHead.x+"-"+snackHead.y);
+
+        if(head.hasClass("snackbody")||head.length===0){
+            alert("游戏结束");
+            location.reload();
+            falg=true;
+        }
+        if(head.hasClass("food")){
+            head.removeClass("food");
+            var text=$(".vaule").text();
+            text++;
+            $(".vaule").text(text);
+            console.log(text);
+            if(text%6===0){
+                var text1=$(".vaule1").text();
+                text1++;
+                $(".vaule1").text(text1);
+                if(text1<=6){
+                    date2-=50;
+                    clearInterval(st);
+                    st=setInterval(move,date2)
+                }
+
+            }
+            ceateFood();
+        }else{
+            snackArr.shift();
+        }
+        drawSnack();
+
+    }
+    if(!falg){
+        var st=setInterval(move,date2);
+    }
+    $(document).keydown(function(e){
+        switch (e.keyCode){
+            case 37:
+            case 65:
+                dir="l";
+                break;
+            case 38:
+            case 87:
+                dir="t";
+                break;
+            case 39:
+            case 68:
+                dir="r";
+                break;
+            case 40:
+            case 83:
+                dir="b";
+                break;
+        }
+    });
+    function ceateFood(){
+        do {
+            var rx = Math.floor(Math.random() * 20);
+            var ry = Math.floor(Math.random() * 20);
+        }while ($("#"+rx+"-"+ry).hasClass("snackbody"));
+        $("#"+rx+"-"+ry).addClass("food");
+    }
+
+
+    var kaiguan=false;
+    $(".btn").click(function(){
+        if(falg){
+            falg=false;
+            drawSnack();
+            st=setInterval(move,date2);
+            kaiguan=true;
+            ceateFood();
+//            $(".mask").css({"bacground":"none"});
+            $(".mask").animate({ left: "500" }, 2000);
+        }
+    })
+    $(".btn1").click(function(){
+        if(kaiguan){
+            if($(this).html()==="暂停"){
+                $(this).html("继续");
+                clearInterval(st)
+            }else{
+                $(this).html("暂停");
+                st=setInterval(move,date2);
+            }
+        }
+
+    })
+</script>
+</html>
