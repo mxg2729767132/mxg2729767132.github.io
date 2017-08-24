@@ -1320,6 +1320,12 @@ footer{
 .gytm{
     height: 25px;
     padding: 5px 0;
+    position: relative;
+}
+.gytm .mao{
+    position: absolute;
+    top:-25px;
+    left: 50px;
 }
 .gytm>ul>li>a{
     font-size: 11px;
@@ -1434,24 +1440,29 @@ footer{
     /*display: none;*/
 
 }
+.tmdaohang img{
+    float: left;
+    margin-right: 125px;
+}
 .tmdaohang input{
     width: 640px;
     outline: transparent dotted 0;
     padding: 7px 3px 7px 5px;
-    float: right;
+    float: left;
     margin-top: 7px;
-    margin-right: 297px;
 }
 .tmdaohang p{
     width: 90px;
     height: 39px;
     background: #c40000;
-    position: absolute;
-    top: 6px;
-    right: 485px;
+    float: left;
+    /*position: absolute;*/
+    /*top: 6px;*/
+    /*right: 485px;*/
     text-align: center;
     line-height: 32px;
     color: #fff;
+    margin-top: 6px;
 }
 /*右边黑框开始*/
 .jingdongyou{
