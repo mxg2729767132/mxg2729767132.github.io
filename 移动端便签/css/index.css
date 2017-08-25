@@ -72,7 +72,7 @@ main{
     overflow-y: scroll;
 }
 .add{
-    width: 100%;
+    width: 7.2rem;
     /*height: 6rem;*/
     /*background-color: #eacc8b;*/
     margin: 0 auto;
@@ -135,7 +135,7 @@ main{
     right:.1rem;
 }
 .wait,.done{
-    width: 100%;
+    width: 7.2rem;
     /*height: 6rem;*/
     background-color: #f0f6fd;
     font-size: .2rem;
