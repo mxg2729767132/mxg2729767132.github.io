@@ -528,7 +528,7 @@
                             this.lifeele.style.backgroundSize=zhi+" 100%";
 //                            this.lifeele.innerHTML=this.life;
                             this.main.removeChild(this.obj[i].el);
-                            delete  this.obj[i];
+                                delete  this.obj[i];
                             this._createLetter();
                             if(this.life==-1){
                                 this.player=prompt("请输入姓名");
@@ -632,6 +632,7 @@
             play(){
                 this._move();
                 this._keydown();
+
             }
         }
 
@@ -683,7 +684,6 @@
         }
         }
         window.onclick=function(){
-           
             tbody.innerHTML = "";
             paihangb.style.display="none";
             phb_flag = true;
@@ -760,7 +760,7 @@
 
                     mask2.style.display="none";
                     // game._gameover();
-                    mask.style.display="none"
+                    mask.style.display="none";
                     game.start();
                 }
 
@@ -779,17 +779,17 @@
         };
        
         //音乐播放控制
-//        var a=1;
-//         music.onclick= function(){
-//            if(a){
-//                music.style.animationPlayState="paused";
-//                audio.pause()
-//            }else{
-//                music.style.animationPlayState="running";
-//                audio.play()
-//            }
-//            a=!a;
-//        }
+        var a=1;
+         music.onclick= function(){
+            if(a){
+                music.style.animationPlayState="paused";
+                audio.pause()
+            }else{
+                music.style.animationPlayState="running";
+                audio.play()
+            }
+            a=!a;
+        }
 //        var phb_flag = true;
 
     </script>
